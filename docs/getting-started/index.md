@@ -12,7 +12,7 @@ Just run this:
 ::: code-group
 
 ```sh [npm]
-npm install -D eslint-cdk-plugin
+npm install --save-dev eslint-cdk-plugin
 ```
 
 ```sh [yarn]
