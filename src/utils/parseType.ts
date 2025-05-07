@@ -20,7 +20,7 @@ export const getConstructorPropertyNames = (type: Type): string[] => {
   if (!isClassDeclaration(classDeclaration)) return [];
 
   const constructor = classDeclaration.members.find((member) =>
-    isConstructorDeclaration(member)
+    isConstructorDeclaration(member),
   );
   if (!constructor?.parameters.length) return [];
 
@@ -31,7 +31,7 @@ export const getConstructorPropertyNames = (type: Type): string[] => {
  * Implementing `isClassDeclaration` defined in typescript on your own, in order not to include TypeScript in dependencies
  */
 const isClassDeclaration = (
-  declaration: Declaration
+  declaration: Declaration,
 ): declaration is ClassDeclaration => {
   // NOTE: In order not to make it dependent on the typescript library, it defines its own unions.
   //       Therefore, the type information structures do not match.
@@ -43,7 +43,7 @@ const isClassDeclaration = (
  * Implementing `isConstructorDeclaration` defined in typescript on your own, in order not to include TypeScript in dependencies
  */
 const isConstructorDeclaration = (
-  node: Node
+  node: Node,
 ): node is ConstructorDeclaration => {
   // NOTE: In order not to make it dependent on the typescript library, it defines its own unions.
   //       Therefore, the type information structures do not match.

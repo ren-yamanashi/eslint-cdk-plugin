@@ -39,7 +39,7 @@ export const propsNameConvention = ESLintUtils.RuleCreator.withoutDocs({
         const constructor = node.body.body.find(
           (member): member is TSESTree.MethodDefinition =>
             member.type === AST_NODE_TYPES.MethodDefinition &&
-            member.kind === "constructor"
+            member.kind === "constructor",
         );
 
         const propsParam = constructor?.value.params?.[2];

@@ -51,7 +51,7 @@ export const requirePropsDefaultDoc = ESLintUtils.RuleCreator.withoutDocs({
           (comment) =>
             comment.type === AST_TOKEN_TYPES.Block &&
             comment.value.includes("*") &&
-            comment.value.includes("@default")
+            comment.value.includes("@default"),
         );
 
         if (!hasDefaultDoc) {

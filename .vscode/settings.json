@@ -9,7 +9,7 @@
     "source.fixAll.eslint"
   ],
   "typescript.preferences.importModuleSpecifier": "relative",
-  "cSpell.words": ["pkgroll", "TSES", "vitepress"],
+  "cSpell.words": ["tsdown", "TSES", "vitepress"],
   "markdownlint.config": {
     "MD001": false,
     "MD025": false,

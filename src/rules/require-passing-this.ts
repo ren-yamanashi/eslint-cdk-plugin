@@ -10,7 +10,7 @@ import { isConstructType } from "../utils/typeCheck";
 type Options = [
   {
     allowNonThisAndDisallowScope?: boolean;
-  }
+  },
 ];
 
 type Context = TSESLint.RuleContext<"requirePassingThis", Options>;

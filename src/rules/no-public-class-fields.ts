@@ -44,7 +44,7 @@ export const noPublicClassFields = ESLintUtils.RuleCreator.withoutDocs({
         const constructor = node.body.body.find(
           (member): member is TSESTree.MethodDefinition =>
             member.type === AST_NODE_TYPES.MethodDefinition &&
-            member.kind === "constructor"
+            member.kind === "constructor",
         );
         if (
           !constructor ||
@@ -56,7 +56,7 @@ export const noPublicClassFields = ESLintUtils.RuleCreator.withoutDocs({
         validateConstructorParameterProperty(
           constructor,
           context,
-          parserServices
+          parserServices,
         );
       },
     };
@@ -70,7 +70,7 @@ export const noPublicClassFields = ESLintUtils.RuleCreator.withoutDocs({
 const validateClassMember = (
   node: TSESTree.ClassDeclaration,
   context: Context,
-  parserServices: ParserServicesWithTypeInformation
+  parserServices: ParserServicesWithTypeInformation,
 ) => {
   for (const member of node.body.body) {
     if (
@@ -115,7 +115,7 @@ const validateClassMember = (
 const validateConstructorParameterProperty = (
   constructor: TSESTree.MethodDefinition,
   context: Context,
-  parserServices: ParserServicesWithTypeInformation
+  parserServices: ParserServicesWithTypeInformation,
 ) => {
   for (const param of constructor.value.params) {
     if (

@@ -89,7 +89,7 @@ export class MyConstruct extends Construct {
     scope: Construct,
     id: string,
     props: MyConstructProps,
-    resourceName: string
+    resourceName: string,
   ) {
     super(scope, id);
   }

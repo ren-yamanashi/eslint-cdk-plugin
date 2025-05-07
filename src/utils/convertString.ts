@@ -12,7 +12,7 @@ export const toPascalCase = (str: string): string => {
         .replace(/([A-Z])/g, " $1")
         .split(/\s+/)
         .map(
-          (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
+          (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase(),
         )
         .join("");
     })

@@ -64,7 +64,7 @@ export const noMutablePublicFields = ESLintUtils.RuleCreator.withoutDocs({
 
               return fixer.replaceText(
                 member,
-                `${accessibility}readonly ${replacedKey}:${value}`
+                `${accessibility}readonly ${replacedKey}:${value}`,
               );
             },
           });

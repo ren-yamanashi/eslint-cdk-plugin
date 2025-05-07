@@ -41,7 +41,7 @@ export const requireJSDoc = ESLintUtils.RuleCreator.withoutDocs({
         const comments = sourceCode.getCommentsBefore(node);
         const hasJSDoc = comments.some(
           ({ type, value }) =>
-            type === AST_TOKEN_TYPES.Block && value.startsWith("*")
+            type === AST_TOKEN_TYPES.Block && value.startsWith("*"),
         );
 
         if (!hasJSDoc) {
@@ -81,7 +81,7 @@ export const requireJSDoc = ESLintUtils.RuleCreator.withoutDocs({
         const comments = sourceCode.getCommentsBefore(node);
         const hasJSDoc = comments.some(
           ({ type, value }) =>
-            type === AST_TOKEN_TYPES.Block && value.startsWith("*")
+            type === AST_TOKEN_TYPES.Block && value.startsWith("*"),
         );
 
         if (!hasJSDoc) {

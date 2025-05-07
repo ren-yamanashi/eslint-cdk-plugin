@@ -1,0 +1,9 @@
+packages:
+  - .
+  - docs
+engineStrict: true
+executionEnv:
+  nodeVersion: ">=22"
+
+onlyBuiltDependencies:
+  - esbuild

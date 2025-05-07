@@ -12,7 +12,7 @@ import { isConstructOrStackType, isConstructType } from "../utils/typeCheck";
 type Options = [
   {
     disallowContainingParentName?: boolean;
-  }
+  },
 ];
 
 type Context = TSESLint.RuleContext<"noParentNameConstructIdMatch", Options>;
@@ -110,7 +110,7 @@ export const noParentNameConstructIdMatch = ESLintUtils.RuleCreator.withoutDocs(
         },
       };
     },
-  }
+  },
 );
 
 /**

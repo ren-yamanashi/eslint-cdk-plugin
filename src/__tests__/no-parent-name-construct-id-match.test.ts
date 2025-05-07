@@ -301,5 +301,5 @@ ruleTester.run(
         errors: [{ messageId: "noParentNameConstructIdMatch" }],
       },
     ],
-  }
+  },
 );

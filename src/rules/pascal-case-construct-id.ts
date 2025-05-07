@@ -70,7 +70,7 @@ const isPascalCase = (str: string) => {
  */
 const validateConstructId = (
   node: TSESTree.NewExpression,
-  context: Context
+  context: Context,
 ) => {
   if (node.arguments.length < 2) return;
 

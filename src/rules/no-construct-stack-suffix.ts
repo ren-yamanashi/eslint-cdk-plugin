@@ -19,7 +19,7 @@ type SuffixType = (typeof SUFFIX_TYPE)[keyof typeof SUFFIX_TYPE];
 type Options = [
   {
     disallowedSuffixes?: SuffixType[];
-  }
+  },
 ];
 
 type Context = TSESLint.RuleContext<"noConstructStackSuffix", Options>;
@@ -91,7 +91,7 @@ export const noConstructStackSuffix = ESLintUtils.RuleCreator.withoutDocs({
 const validateConstructId = (
   node: TSESTree.NewExpression,
   context: Context,
-  options: { disallowedSuffixes: SuffixType[] }
+  options: { disallowedSuffixes: SuffixType[] },
 ): void => {
   // NOTE: Treat the second argument as ID
   const secondArg = node.arguments[1];

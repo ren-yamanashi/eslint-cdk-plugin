@@ -25,12 +25,12 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22.11.0
+          node-version: 22.15.0
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 8.7.6
+          version: 10.10.0
           run_install: false
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -53,7 +53,7 @@ jobs:
       - name: Lint
         run: pnpm run lint
       - name: Build docs
-        run: pnpm run docs:build
+        run: pnpm run docs build
       - name: Configure custom domain
         run: |
           echo "eslint-cdk-plugin.dev" > docs/.vitepress/dist/CNAME

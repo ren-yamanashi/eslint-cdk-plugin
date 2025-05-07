@@ -42,7 +42,7 @@ export const constructConstructorProperty = ESLintUtils.RuleCreator.withoutDocs(
           const constructor = node.body.body.find(
             (member): member is TSESTree.MethodDefinition =>
               member.type === AST_NODE_TYPES.MethodDefinition &&
-              member.kind === "constructor"
+              member.kind === "constructor",
           );
 
           // NOTE: Skip if there's no constructor
@@ -52,7 +52,7 @@ export const constructConstructorProperty = ESLintUtils.RuleCreator.withoutDocs(
         },
       };
     },
-  }
+  },
 );
 
 /**
@@ -60,7 +60,7 @@ export const constructConstructorProperty = ESLintUtils.RuleCreator.withoutDocs(
  */
 const validateConstructorProperty = (
   constructor: TSESTree.MethodDefinition,
-  context: Context
+  context: Context,
 ): void => {
   const params = constructor.value.params;
 

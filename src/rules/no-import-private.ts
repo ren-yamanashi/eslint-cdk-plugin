@@ -40,7 +40,7 @@ export const noImportPrivate: Rule.RuleModule = {
         if (
           currentDirSegments.length !== importDirSegments.length ||
           currentDirSegments.some(
-            (segment, index) => segment !== importDirSegments[index]
+            (segment, index) => segment !== importDirSegments[index],
           )
         ) {
           context.report({ node, messageId: "noImportPrivate" });
