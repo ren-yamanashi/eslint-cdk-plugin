@@ -7,6 +7,7 @@ import {
 } from "@typescript-eslint/utils";
 
 import { createRule } from "../utils/createRule";
+import { getConstructor } from "../utils/getConstructor";
 import { isConstructType } from "../utils/typeCheck";
 
 type Context = TSESLint.RuleContext<
@@ -47,14 +48,7 @@ export const constructConstructorProperty = createRule({
         const type = parserServices.getTypeAtLocation(node);
         if (!isConstructType(type)) return;
 
-        // NOTE: Find the constructor method
-        const constructor = node.body.body.find(
-          (member): member is TSESTree.MethodDefinition =>
-            member.type === AST_NODE_TYPES.MethodDefinition &&
-            member.kind === "constructor"
-        );
-
-        // NOTE: Skip if there's no constructor
+        const constructor = getConstructor(node);
         if (!constructor) return;
 
         validateConstructorProperty(constructor, context, parserServices);

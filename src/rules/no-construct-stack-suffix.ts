@@ -7,7 +7,7 @@ import {
 
 import { toPascalCase } from "../utils/convertString";
 import { createRule } from "../utils/createRule";
-import { getConstructorPropertyNames } from "../utils/parseType";
+import { getConstructorPropertyNames } from "../utils/getPropertyNames";
 import { isConstructOrStackType } from "../utils/typeCheck";
 
 const SUFFIX_TYPE = {

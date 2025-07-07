@@ -1,10 +1,7 @@
-import {
-  AST_NODE_TYPES,
-  ESLintUtils,
-  TSESTree,
-} from "@typescript-eslint/utils";
+import { AST_NODE_TYPES, ESLintUtils } from "@typescript-eslint/utils";
 
 import { createRule } from "../utils/createRule";
+import { getConstructor } from "../utils/getConstructor";
 import { isConstructType } from "../utils/typeCheck";
 
 /**
@@ -37,13 +34,10 @@ export const propsNameConvention = createRule({
         if (!isConstructType(type)) return;
 
         // NOTE: check constructor parameter
-        const constructor = node.body.body.find(
-          (member): member is TSESTree.MethodDefinition =>
-            member.type === AST_NODE_TYPES.MethodDefinition &&
-            member.kind === "constructor"
-        );
+        const constructor = getConstructor(node);
+        if (!constructor) return;
 
-        const propsParam = constructor?.value.params?.[2];
+        const propsParam = constructor.value.params?.[2];
         if (propsParam?.type !== AST_NODE_TYPES.Identifier) return;
 
         const typeAnnotation = propsParam.typeAnnotation;

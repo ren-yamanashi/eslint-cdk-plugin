@@ -5,7 +5,7 @@ import {
 } from "@typescript-eslint/utils";
 
 import { createRule } from "../utils/createRule";
-import { getConstructorPropertyNames } from "../utils/parseType";
+import { getConstructorPropertyNames } from "../utils/getPropertyNames";
 import { isConstructType } from "../utils/typeCheck";
 
 type Options = [

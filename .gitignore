@@ -3,4 +3,4 @@ dist/
 examples/
 .DS_Store
 *.tgz
-.cursor/
+.claude/

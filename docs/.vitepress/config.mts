@@ -123,6 +123,10 @@ export default defineConfig({
                 link: "/rules/no-parent-name-construct-id-match",
               },
               {
+                text: "no-unused-props",
+                link: "/rules/no-unused-props",
+              },
+              {
                 text: "no-variable-construct-id",
                 link: "/rules/no-variable-construct-id",
               },
@@ -219,6 +223,10 @@ export default defineConfig({
               {
                 text: "no-parent-name-construct-id-match",
                 link: "/ja/rules/no-parent-name-construct-id-match",
+              },
+              {
+                text: "no-unused-props",
+                link: "/ja/rules/no-unused-props",
               },
               {
                 text: "no-variable-construct-id",

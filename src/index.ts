@@ -10,6 +10,7 @@ import { noImportPrivate } from "./rules/no-import-private";
 import { noMutablePropertyOfPropsInterface } from "./rules/no-mutable-property-of-props-interface";
 import { noMutablePublicPropertyOfConstruct } from "./rules/no-mutable-public-property-of-construct";
 import { noParentNameConstructIdMatch } from "./rules/no-parent-name-construct-id-match";
+import { noUnusedProps } from "./rules/no-unused-props";
 import { noVariableConstructId } from "./rules/no-variable-construct-id";
 import { pascalCaseConstructId } from "./rules/pascal-case-construct-id";
 import { propsNameConvention } from "./rules/props-name-convention";
@@ -27,6 +28,7 @@ const rules = {
   "no-mutable-property-of-props-interface": noMutablePropertyOfPropsInterface,
   "no-mutable-public-property-of-construct": noMutablePublicPropertyOfConstruct,
   "no-parent-name-construct-id-match": noParentNameConstructIdMatch,
+  "no-unused-props": noUnusedProps,
   "no-variable-construct-id": noVariableConstructId,
   "pascal-case-construct-id": pascalCaseConstructId,
   "props-name-convention": propsNameConvention,
@@ -66,6 +68,8 @@ const recommended = createFlatConfig({
     "error",
     { disallowContainingParentName: false },
   ],
+  // TODO: Enable this rule at v4.0.0
+  // "cdk/no-unused-props": "error",
   "cdk/no-variable-construct-id": "error",
   "cdk/pascal-case-construct-id": "error",
   "cdk/require-passing-this": ["error", { allowNonThisAndDisallowScope: true }],
@@ -83,6 +87,7 @@ const strict = createFlatConfig({
     "error",
     { disallowContainingParentName: true },
   ],
+  "cdk/no-unused-props": "error",
   "cdk/no-variable-construct-id": "error",
   "cdk/pascal-case-construct-id": "error",
   "cdk/props-name-convention": "error",

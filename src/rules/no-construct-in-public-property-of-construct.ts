@@ -8,6 +8,7 @@ import {
 
 import { SYMBOL_FLAGS } from "../constants/tsInternalFlags";
 import { createRule } from "../utils/createRule";
+import { getConstructor } from "../utils/getConstructor";
 import { isConstructOrStackType } from "../utils/typeCheck";
 
 type Context = TSESLint.RuleContext<"invalidPublicPropertyOfConstruct", []>;
@@ -42,11 +43,7 @@ export const noConstructInPublicPropertyOfConstruct = createRule({
         validatePublicPropertyOfConstruct(node, context, parserServices);
 
         // NOTE: Check constructor parameter properties
-        const constructor = node.body.body.find(
-          (member): member is TSESTree.MethodDefinition =>
-            member.type === AST_NODE_TYPES.MethodDefinition &&
-            member.kind === "constructor"
-        );
+        const constructor = getConstructor(node);
         if (
           !constructor ||
           constructor.value.type !== AST_NODE_TYPES.FunctionExpression
