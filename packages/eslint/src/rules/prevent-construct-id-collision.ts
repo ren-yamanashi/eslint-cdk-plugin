@@ -2,7 +2,7 @@ import { AST_NODE_TYPES, ESLintUtils, TSESTree } from "@typescript-eslint/utils"
 
 import { isDeclaredInEnclosingBlocks } from "../core/ast-node/finder/declared-in-enclosing-blocks";
 import { findEnclosingLoopBody } from "../core/ast-node/finder/enclosing-loop-body";
-import { isConstructType } from "../core/cdk-construct/type-checker/is-construct";
+import { isConstructTypeIgnoringSubclasses } from "../core/cdk-construct/type-checker/is-construct";
 import { findConstructorPropertyNames } from "../core/ts-type/finder/constructor-property-name";
 import { createRule } from "../shared/create-rule";
 
@@ -32,7 +32,7 @@ export const preventConstructIdCollision = createRule({
       NewExpression(node) {
         const type = parserServices.getTypeAtLocation(node);
 
-        if (!isConstructType(type) || node.arguments.length < 2) return;
+        if (!isConstructTypeIgnoringSubclasses(type) || node.arguments.length < 2) return;
 
         const calleeType = parserServices.getTypeAtLocation(node.callee);
         const constructorPropertyNames = findConstructorPropertyNames(calleeType, checker);
