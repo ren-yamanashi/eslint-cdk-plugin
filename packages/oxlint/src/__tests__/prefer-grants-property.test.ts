@@ -94,6 +94,20 @@ ruleTester.run("prefer-grants-property", preferGrantsProperty, {
       target.grantPublish();
       `,
     },
+    {
+      code: `
+      class Construct {}
+      class TopicGrants {
+        publish() {}
+      }
+      class Topic extends Construct {
+        grants: TopicGrants = new TopicGrants();
+        grantPublish() {}
+      }
+      declare const topic: Topic | string;
+      topic.grantPublish();
+      `,
+    },
   ],
   invalid: [
     {
@@ -122,6 +136,80 @@ ruleTester.run("prefer-grants-property", preferGrantsProperty, {
         grantPublish() {}
       }
       const topic = new Topic();
+      topic.grantPublish();
+      `,
+      errors: [{ messageId: "useGrantsProperty" }],
+    },
+    {
+      code: `
+      class Construct {}
+      class TopicGrants {
+        publish() {}
+      }
+      class Topic extends Construct {
+        grants: TopicGrants = new TopicGrants();
+        grantPublish() {}
+      }
+      interface MyConstructProps {
+        readonly topic: Topic;
+      }
+      class MyConstruct extends Construct {
+        constructor(scope: Construct, id: string, props: MyConstructProps) {
+          super(scope, id);
+          props.topic.grantPublish();
+        }
+      }
+      `,
+      errors: [{ messageId: "useGrantsProperty" }],
+    },
+    {
+      code: `
+      class Construct {}
+      class TopicGrants {
+        publish() {}
+      }
+      class Topic extends Construct {
+        grants: TopicGrants = new TopicGrants();
+        grantPublish() {}
+      }
+      interface MyConstructProps {
+        readonly topic?: Topic;
+      }
+      class MyConstruct extends Construct {
+        constructor(scope: Construct, id: string, props: MyConstructProps) {
+          super(scope, id);
+          props.topic?.grantPublish();
+        }
+      }
+      `,
+      errors: [{ messageId: "useGrantsProperty" }],
+    },
+    {
+      code: `
+      class Construct {}
+      class TopicGrants {
+        publish() {}
+      }
+      class Topic extends Construct {
+        grants: TopicGrants = new TopicGrants();
+        grantPublish() {}
+      }
+      declare const topic: Topic | void;
+      topic.grantPublish();
+      `,
+      errors: [{ messageId: "useGrantsProperty" }],
+    },
+    {
+      code: `
+      class Construct {}
+      class TopicGrants {
+        publish() {}
+      }
+      class Topic extends Construct {
+        grants: TopicGrants = new TopicGrants();
+        grantPublish() {}
+      }
+      declare const topic: Topic | null;
       topic.grantPublish();
       `,
       errors: [{ messageId: "useGrantsProperty" }],
