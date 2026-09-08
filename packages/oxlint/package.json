@@ -48,15 +48,15 @@
     "test": "vp test --run"
   },
   "dependencies": {
-    "corsa-oxlint": "1.12.4",
+    "corsa-oxlint": "1.13.1",
     "oxlint-tsgolint": "^7.0.2001",
     "typescript": "^7.0.2"
   },
   "devDependencies": {
-    "@oxlint/plugins": "^1.80.0",
+    "@oxlint/plugins": "^1.81.0",
     "@types/node": "^24.10.13",
     "@voidzero-dev/vite-plus-core": "^0.3.0",
-    "oxlint": "^1.80.0",
+    "oxlint": "^1.81.0",
     "vite-plus": "^0.3.0"
   },
   "peerDependencies": {
