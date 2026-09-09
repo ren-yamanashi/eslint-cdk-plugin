@@ -1,7 +1,10 @@
+import type { CorsaType, CorsaTypeCheckerShape } from "corsa-oxlint";
+
 import { AST_NODE_TYPES, ESLintUtils } from "corsa-oxlint";
 
 import { isConstructTypeIgnoringSubclasses } from "../core/cdk-construct/type-checker/is-construct";
 import { findNonNullableType } from "../core/ts-type/finder/non-nullable-type";
+import { findReceiverType } from "../core/ts-type/finder/receiver-type";
 import { createRule } from "../shared/create-rule";
 
 export const preferGrantsProperty = createRule({
@@ -35,32 +38,13 @@ export const preferGrantsProperty = createRule({
         const methodName = node.callee.property.name;
         if (!methodName.startsWith("grant")) return;
 
-        const objectNode = node.callee.object;
-        const receiverType = parserServices.getTypeAtLocation(objectNode);
-        if (!receiverType) return;
-
-        // NOTE: An optional receiver such as `props.topic?.grantPublish()` is typed
-        // `Topic | undefined`, so strip the nullish members before inspecting the Construct.
-        const type = findNonNullableType(receiverType, checker);
-        if (!isConstructTypeIgnoringSubclasses(type, checker)) return;
-
-        const grantsProperty = checker.getPropertiesOfType(type).find((s) => s.name === "grants");
-        if (!grantsProperty) return;
-
-        const grantsType = checker.getTypeOfSymbol(grantsProperty);
-        if (!grantsType) return;
-
-        const grantsTypeName = checker.getSymbolOfType(grantsType)?.name;
-        if (!grantsTypeName?.endsWith("Grants")) return;
-
         const convertedMethodName = methodName
           .replace(/^grant/, "")
           .replace(/^./, (c) => c.toLowerCase());
 
-        const suggestedMethod = checker
-          .getPropertiesOfType(grantsType)
-          .find((s) => s.name === convertedMethodName);
-        if (!suggestedMethod) return;
+        const objectNode = node.callee.object;
+        const type = findReceiverType(objectNode, parserServices, checker);
+        if (!type || !hasGrantsMethod(type, convertedMethodName, checker)) return;
 
         const objectName =
           objectNode.type === AST_NODE_TYPES.Identifier ? objectNode.name : "object";
@@ -78,3 +62,32 @@ export const preferGrantsProperty = createRule({
     };
   },
 });
+
+/**
+ * Check whether a Construct type exposes the given method on its grants property
+ * @param type - The type of the call receiver
+ * @param methodName - The grants method name the grant* call maps to
+ * @param checker - The corsa-oxlint type checker
+ * @returns True if `type.grants.<methodName>()` is available, otherwise false
+ */
+const hasGrantsMethod = (
+  type: CorsaType,
+  methodName: string,
+  checker: CorsaTypeCheckerShape,
+): boolean => {
+  // NOTE: An optional receiver such as `props.topic?.grantPublish()` is typed
+  // `Topic | undefined`, so strip the nullish members before inspecting the Construct.
+  const receiverType = findNonNullableType(type, checker);
+  if (!isConstructTypeIgnoringSubclasses(receiverType, checker)) return false;
+
+  const grantsProperty = checker.getPropertiesOfType(receiverType).find((s) => s.name === "grants");
+  if (!grantsProperty) return false;
+
+  const grantsType = checker.getTypeOfSymbol(grantsProperty);
+  if (!grantsType) return false;
+
+  const grantsTypeName = checker.getSymbolOfType(grantsType)?.name;
+  if (!grantsTypeName?.endsWith("Grants")) return false;
+
+  return checker.getPropertiesOfType(grantsType).some((s) => s.name === methodName);
+};
