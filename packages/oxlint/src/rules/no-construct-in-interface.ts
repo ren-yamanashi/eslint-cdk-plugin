@@ -2,6 +2,7 @@ import { AST_NODE_TYPES, ESLintUtils } from "corsa-oxlint";
 
 import { findStaticPropertyName } from "../core/ast-node/finder/static-property-key";
 import { findTypeOfCdkConstruct } from "../core/cdk-construct/type-finder";
+import { findTypeAtLocation } from "../core/ts-type/finder/type-at-location";
 import { createRule } from "../shared/create-rule";
 
 /**
@@ -35,7 +36,7 @@ export const noConstructInInterface = createRule({
           const propertyName = findStaticPropertyName(property);
           if (propertyName === null) continue;
 
-          const type = parserServices.getTypeAtLocation(property);
+          const type = findTypeAtLocation(property, parserServices);
           const result = findTypeOfCdkConstruct(type, checker);
 
           if (result) {

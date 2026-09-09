@@ -1,5 +1,9 @@
 import type { CorsaType, CorsaTypeCheckerShape } from "corsa-oxlint";
 
+import { createTypeQueryMemo } from "../memo/type-query-memo";
+
+const memoizeExtendsResult = createTypeQueryMemo<boolean>();
+
 /**
  * Check if the type extends one of the target super classes (recursively walking the base type chain).
  * @param type - The type to check
@@ -16,6 +20,22 @@ export const isExtendsFromTargetSuperClass = (
 ): boolean => {
   if (!type) return false;
 
+  // NOTE: The walk asks corsa for the symbol and the base types of every level, and rules run it
+  // once per AST node even though a file mentions only a handful of distinct types. The answer
+  // depends on nothing but the arguments, so it is resolved once per type and question.
+  return memoizeExtendsResult(
+    checker,
+    `${type.id}|${targetSuperClasses.join(",")}|${ignoredClasses.join(",")}`,
+    () => walkBaseTypes(type, checker, targetSuperClasses, ignoredClasses),
+  );
+};
+
+const walkBaseTypes = (
+  type: CorsaType,
+  checker: CorsaTypeCheckerShape,
+  targetSuperClasses: readonly string[],
+  ignoredClasses: readonly string[],
+): boolean => {
   // NOTE: A union / intersection type is not a class of its own, so it never extends a super class.
   // Callers that want to look inside it use findTypeOfCdkConstruct instead.
   if (checker.isUnionType(type) || checker.isIntersectionType(type)) return false;

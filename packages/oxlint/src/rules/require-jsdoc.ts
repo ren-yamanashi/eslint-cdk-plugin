@@ -3,6 +3,7 @@ import { AST_NODE_TYPES, ESLintUtils } from "corsa-oxlint";
 import { findAttachedJSDocComments } from "../core/ast-node/finder/attached-jsdoc-comment";
 import { findStaticPropertyName } from "../core/ast-node/finder/static-property-key";
 import { isConstructType } from "../core/cdk-construct/type-checker/is-construct";
+import { findTypeAtLocation } from "../core/ts-type/finder/type-at-location";
 import { createRule } from "../shared/create-rule";
 
 /**
@@ -68,7 +69,7 @@ export const requireJSDoc = createRule({
         }
 
         // NOTE: Check if the class extends Construct and the property is public
-        const classType = parserServices.getTypeAtLocation(classDeclaration);
+        const classType = findTypeAtLocation(classDeclaration, parserServices);
         const accessibility = node.accessibility ?? "public";
         if (!isConstructType(classType, checker) || accessibility !== "public") {
           return;

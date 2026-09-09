@@ -7,6 +7,7 @@ import { findEnclosingClass } from "../core/ast-node/finder/enclosing-class";
 import { isInsideConstructorOrMethod } from "../core/ast-node/finder/enclosing-method";
 import { isConstructTypeIgnoringSubclasses } from "../core/cdk-construct/type-checker/is-construct";
 import { isConstructOrStackType } from "../core/cdk-construct/type-checker/is-construct-or-stack";
+import { findTypeAtLocation } from "../core/ts-type/finder/type-at-location";
 import { toPascalCase } from "../shared/converter/to-pascal-case";
 import { createRule } from "../shared/create-rule";
 
@@ -56,7 +57,7 @@ export const noParentNameConstructIdMatch = createRule({
       NewExpression(node) {
         if (node.arguments.length < 2) return;
 
-        const type = parserServices.getTypeAtLocation(node);
+        const type = findTypeAtLocation(node, parserServices);
         if (!isConstructTypeIgnoringSubclasses(type, checker)) return;
 
         // NOTE: nested closures do not have a stable "parent class" relationship
@@ -65,7 +66,7 @@ export const noParentNameConstructIdMatch = createRule({
         const enclosingClass = findEnclosingClass(node);
         if (!enclosingClass) return;
 
-        const enclosingClassType = parserServices.getTypeAtLocation(enclosingClass);
+        const enclosingClassType = findTypeAtLocation(enclosingClass, parserServices);
         if (!isConstructOrStackType(enclosingClassType, checker)) return;
 
         const parentClassName = enclosingClass.id?.name;

@@ -6,6 +6,7 @@ import { findConstructor } from "../../core/ast-node/finder/constructor";
 import { findConstructorParamIdentifier } from "../../core/ast-node/finder/constructor-param-identifier";
 import { isConstructType } from "../../core/cdk-construct/type-checker/is-construct";
 import { findNonNullableType } from "../../core/ts-type/finder/non-nullable-type";
+import { findTypeAtLocation } from "../../core/ts-type/finder/type-at-location";
 import { createRule } from "../../shared/create-rule";
 import { PropsUsageAnalyzer } from "./props-usage-analyzer";
 import { IPropsUsageTracker, PropsUsageTracker } from "./props-usage-tracker";
@@ -36,7 +37,7 @@ export const noUnusedProps = createRule({
       ClassDeclaration(node) {
         if (node.abstract) return;
 
-        const type = parserServices.getTypeAtLocation(node);
+        const type = findTypeAtLocation(node, parserServices);
         if (!isConstructType(type, checker)) return;
 
         const constructor = findConstructor(node);
@@ -75,7 +76,7 @@ const getPropsParam = (
   const identifier = findConstructorParamIdentifier(propsParam);
   if (!identifier) return null;
 
-  const type = parserServices.getTypeAtLocation(identifier);
+  const type = findTypeAtLocation(identifier, parserServices);
   if (!type) return null;
 
   return {

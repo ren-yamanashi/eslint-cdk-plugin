@@ -6,6 +6,7 @@ import { isDeclaredInEnclosingBlocks } from "../core/ast-node/finder/declared-in
 import { findEnclosingLoopBody } from "../core/ast-node/finder/enclosing-loop-body";
 import { isConstructTypeIgnoringSubclasses } from "../core/cdk-construct/type-checker/is-construct";
 import { findConstructorPropertyNames } from "../core/ts-type/finder/constructor-property-name";
+import { findTypeAtLocation } from "../core/ts-type/finder/type-at-location";
 import { createRule } from "../shared/create-rule";
 
 /**
@@ -33,11 +34,12 @@ export const preventConstructIdCollision = createRule({
     const checker = parserServices.program.getTypeChecker();
     return {
       NewExpression(node) {
-        const type = parserServices.getTypeAtLocation(node);
+        if (node.arguments.length < 2) return;
 
-        if (!isConstructTypeIgnoringSubclasses(type, checker) || node.arguments.length < 2) return;
+        const type = findTypeAtLocation(node, parserServices);
+        if (!isConstructTypeIgnoringSubclasses(type, checker)) return;
 
-        const calleeType = parserServices.getTypeAtLocation(node.callee);
+        const calleeType = findTypeAtLocation(node.callee, parserServices);
         const constructorPropertyNames = findConstructorPropertyNames(calleeType, checker);
         if (constructorPropertyNames[1] !== "id") return;
 

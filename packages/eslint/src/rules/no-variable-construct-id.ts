@@ -31,9 +31,10 @@ export const noVariableConstructId = createRule({
     const checker = parserServices.program.getTypeChecker();
     return {
       NewExpression(node) {
-        const type = parserServices.getTypeAtLocation(node);
+        if (node.arguments.length < 2) return;
 
-        if (!isConstructTypeIgnoringSubclasses(type) || node.arguments.length < 2) return;
+        const type = parserServices.getTypeAtLocation(node);
+        if (!isConstructTypeIgnoringSubclasses(type)) return;
 
         // NOTE: Skip when inside a class that is not Construct/Stack
         const enclosingClass = findEnclosingClass(node);

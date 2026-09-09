@@ -4,6 +4,7 @@ import { findEnclosingClass } from "../core/ast-node/finder/enclosing-class";
 import { isConstructTypeIgnoringSubclasses } from "../core/cdk-construct/type-checker/is-construct";
 import { isConstructOrStackType } from "../core/cdk-construct/type-checker/is-construct-or-stack";
 import { findConstructorPropertyNames } from "../core/ts-type/finder/constructor-property-name";
+import { findTypeAtLocation } from "../core/ts-type/finder/type-at-location";
 import { createRule } from "../shared/create-rule";
 
 type Option = {
@@ -50,23 +51,24 @@ export const requirePassingThis = createRule({
     const checker = parserServices.program.getTypeChecker();
     return {
       NewExpression(node) {
-        const type = parserServices.getTypeAtLocation(node);
-
-        if (!isConstructTypeIgnoringSubclasses(type, checker) || !node.arguments.length) return;
-
-        // NOTE: Only flag when inside a Construct/Stack class where `this` is available
-        const enclosingClass = findEnclosingClass(node);
-        if (!enclosingClass) return;
-        const enclosingClassType = parserServices.getTypeAtLocation(enclosingClass);
-        if (!isConstructOrStackType(enclosingClassType, checker)) return;
+        if (!node.arguments.length) return;
 
         const argument = node.arguments[0];
 
         // NOTE: If the first argument is already `this`, it's valid
         if (argument.type === AST_NODE_TYPES.ThisExpression) return;
 
+        const type = findTypeAtLocation(node, parserServices);
+        if (!isConstructTypeIgnoringSubclasses(type, checker)) return;
+
+        // NOTE: Only flag when inside a Construct/Stack class where `this` is available
+        const enclosingClass = findEnclosingClass(node);
+        if (!enclosingClass) return;
+        const enclosingClassType = findTypeAtLocation(enclosingClass, parserServices);
+        if (!isConstructOrStackType(enclosingClassType, checker)) return;
+
         // NOTE: If the first argument is not `scope`, it's valid
-        const calleeType = parserServices.getTypeAtLocation(node.callee);
+        const calleeType = findTypeAtLocation(node.callee, parserServices);
         const constructorPropertyNames = findConstructorPropertyNames(calleeType, checker);
         if (constructorPropertyNames[0] !== "scope") return;
 

@@ -234,6 +234,47 @@ ruleTester.run("require-passing-this", requirePassingThis, {
     },
   ],
   invalid: [
+    // WHEN: a Construct and a plain class are instantiated with `scope` in the same file
+    // NOTE: only the Construct is reported, which pins that the two classes are judged separately
+    {
+      code: `
+      class Construct {}
+      class SampleConstruct extends Construct {
+        constructor(scope: Construct, id: string) {
+          super(scope, id);
+        }
+      }
+      class PlainClass {
+        constructor(scope: Construct, id: string) {}
+      }
+      class TestConstruct extends Construct {
+        constructor(scope: Construct, id: string) {
+          super(scope, id);
+          new PlainClass(scope, "PlainId");
+          new SampleConstruct(scope, "ValidId");
+        }
+      }
+      `,
+      errors: [{ messageId: "missingPassingThis" }],
+      output: `
+      class Construct {}
+      class SampleConstruct extends Construct {
+        constructor(scope: Construct, id: string) {
+          super(scope, id);
+        }
+      }
+      class PlainClass {
+        constructor(scope: Construct, id: string) {}
+      }
+      class TestConstruct extends Construct {
+        constructor(scope: Construct, id: string) {
+          super(scope, id);
+          new PlainClass(scope, "PlainId");
+          new SampleConstruct(this, "ValidId");
+        }
+      }
+      `,
+    },
     // WHEN: passing 'scope' variable
     {
       code: `
