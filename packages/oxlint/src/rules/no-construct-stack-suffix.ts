@@ -5,6 +5,7 @@ import { ESLintUtils } from "corsa-oxlint";
 import { findConstructIdString } from "../core/ast-node/finder/construct-id-string";
 import { isConstructOrStackType } from "../core/cdk-construct/type-checker/is-construct-or-stack";
 import { findConstructorPropertyNames } from "../core/ts-type/finder/constructor-property-name";
+import { findTypeAtLocation } from "../core/ts-type/finder/type-at-location";
 import { toPascalCase } from "../shared/converter/to-pascal-case";
 import { createRule } from "../shared/create-rule";
 
@@ -63,12 +64,12 @@ export const noConstructStackSuffix = createRule({
 
     return {
       NewExpression(node) {
-        const type = parserServices.getTypeAtLocation(node);
-        if (!isConstructOrStackType(type, checker) || node.arguments.length < 2) {
-          return;
-        }
+        if (node.arguments.length < 2) return;
 
-        const calleeType = parserServices.getTypeAtLocation(node.callee);
+        const type = findTypeAtLocation(node, parserServices);
+        if (!isConstructOrStackType(type, checker)) return;
+
+        const calleeType = findTypeAtLocation(node.callee, parserServices);
         const constructorPropertyNames = findConstructorPropertyNames(calleeType, checker);
         if (constructorPropertyNames[1] !== "id") return;
 

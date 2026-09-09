@@ -104,8 +104,8 @@ importers:
   packages/oxlint:
     dependencies:
       corsa-oxlint:
-        specifier: 1.13.1
-        version: 1.13.1(@oxlint/plugins@1.81.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2001)(vite-plus@0.3.0(@types/node@24.10.15)(jiti@2.6.1)(typescript@7.0.2)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(yaml@2.8.1)))
+        specifier: 1.14.0
+        version: 1.14.0(@oxlint/plugins@1.81.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2001)(vite-plus@0.3.0(@types/node@24.10.15)(jiti@2.6.1)(typescript@7.0.2)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(yaml@2.8.1)))
       oxlint-tsgolint:
         specifier: ^7.0.2001
         version: 7.0.2001
@@ -176,60 +176,60 @@ packages:
   '@blazediff/core@1.9.1':
     resolution: {integrity: sha512-ehg3jIkYKulZh+8om/O25vkvSsXXwC+skXmyA87FFx6A/45eqOkZsBltMw/TVteb0mloiGT8oGRTcjRAz66zaA==}
 
-  '@corsa-bind/napi-darwin-arm64@1.13.1':
-    resolution: {integrity: sha512-t2/xpeZgd0Tz4GgbZkRyZHO9fGE48G4YXP9WHXM/RLNvAKMUTi8i1+/8ORD3meakhGrIx0LF99XEgTB/xrvLQQ==}
+  '@corsa-bind/napi-darwin-arm64@1.14.0':
+    resolution: {integrity: sha512-mFG0FwQDBflIS9ZideSlN8lo+AKIK33KaOhpT/ZdL0aqzxgKN+KfUnn99hsMZ7jU2i11hK/mCa5Ve6jhZxFh/A==}
     engines: {bun: '>=1.2', deno: '>=2.0', node: '>=22'}
     cpu: [arm64]
     os: [darwin]
 
-  '@corsa-bind/napi-darwin-x64@1.13.1':
-    resolution: {integrity: sha512-U+ojOJP4g5VXntWTzw0AWqQ6Ee8ryweRvyECb3BCFGB7sbfq1/IZQ4LwTTioXELYba5FvomwmKmAd1e8nwImzg==}
+  '@corsa-bind/napi-darwin-x64@1.14.0':
+    resolution: {integrity: sha512-PP8rt2YuiE/R4qrAONdUmxY9/dn5va25ZG0ZpfonOongh8HnCK5oRgtl/AIeweC+yjdcZ5c08MZ6cQPZumi26Q==}
     engines: {bun: '>=1.2', deno: '>=2.0', node: '>=22'}
     cpu: [x64]
     os: [darwin]
 
-  '@corsa-bind/napi-linux-arm64-gnu@1.13.1':
-    resolution: {integrity: sha512-hfF3jboHnkJ0H2itPwG/gsoOJ3RlsX+hUtjdg/oM9ESZPGQBsgGgHOKx1lpCwQUEDzIxWP5jxQZMq6yvuDS3xQ==}
+  '@corsa-bind/napi-linux-arm64-gnu@1.14.0':
+    resolution: {integrity: sha512-SH2FzN2ddRMjx9kZc+xsrPDr8jG3nB1GAZNZsh2RuVJFCnXdpIBEh7+Kv86JVQhxiT/OQJdVOnYXlcIjj00cow==}
     engines: {bun: '>=1.2', deno: '>=2.0', node: '>=22'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@corsa-bind/napi-linux-arm64-musl@1.13.1':
-    resolution: {integrity: sha512-+rptPo3CrkrxT3QPL7tEr25HNe77wzHcOEiV5wZVk7Nvn04eR1O8KYIVqrkWiDU1nqtfj75H/7fwCoh3OBPB8w==}
+  '@corsa-bind/napi-linux-arm64-musl@1.14.0':
+    resolution: {integrity: sha512-txh3hnnaXf1gXtY4scw3f/ZdAf9A30Z9uGLKJvw7QcnYzQJlQHXNdGtFutY0aELpXr1SBt/xIZpfvU6DOna5Hg==}
     engines: {bun: '>=1.2', deno: '>=2.0', node: '>=22'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@corsa-bind/napi-linux-x64-gnu@1.13.1':
-    resolution: {integrity: sha512-cAHqxDoxXRTkfsOaKE4aJzLpacoiTIw2lfLJW5eXUyZaojgI0bRtof8X4XLMXp/1t1e797yfbBemodf4euENhw==}
+  '@corsa-bind/napi-linux-x64-gnu@1.14.0':
+    resolution: {integrity: sha512-yw9qW9sSMr/fdOoJfto+KaFg0pwms8kdep83HAUjT6SmbOaRMgfsaSihVd1vyro0ieAdkDlWGXVAuZivCr8+hQ==}
     engines: {bun: '>=1.2', deno: '>=2.0', node: '>=22'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@corsa-bind/napi-linux-x64-musl@1.13.1':
-    resolution: {integrity: sha512-c1Uj1qo/08uZHQ2VnwqUYh9PG/FV3QQTaWLg5URyc8IWJH4AZRs25N3NwUS0/QAtIT+gGp0ZMWUfNXzlwRgZng==}
+  '@corsa-bind/napi-linux-x64-musl@1.14.0':
+    resolution: {integrity: sha512-cjDlETWEIEMO5ol1ANgXTZUFhcGgsJxg9N6Py75webu5Zv8m/YGo8DMf+2XCSf9tSXjeWxgQISovCI12TIan6Q==}
     engines: {bun: '>=1.2', deno: '>=2.0', node: '>=22'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@corsa-bind/napi-win32-arm64-msvc@1.13.1':
-    resolution: {integrity: sha512-GaYPquBgKsXktNJKk/Fa+kBRciXnD3BDV5mOhJ+a4Ta+ETuSZ0xZUizE02ObAf3zHeV2gOPy+B2L0rHs/w7Lxw==}
+  '@corsa-bind/napi-win32-arm64-msvc@1.14.0':
+    resolution: {integrity: sha512-8WyCC4aECOOimGhBNj9hFSxIzTVRr7dLqYso7HcWQEQCIQl8cF6cb9mAzUwnzzhM5dtVJ5+aERp5EVhHspRy1g==}
     engines: {bun: '>=1.2', deno: '>=2.0', node: '>=22'}
     cpu: [arm64]
     os: [win32]
 
-  '@corsa-bind/napi-win32-x64-msvc@1.13.1':
-    resolution: {integrity: sha512-GZRSqr7BUerOT6mgdyIOm5lRlLJf9wEYdAXm8o87sK9RULqoLVGOQ4toGhrha8DVIpHRf2FxxzV1yKtMyTbZbg==}
+  '@corsa-bind/napi-win32-x64-msvc@1.14.0':
+    resolution: {integrity: sha512-Ia84IH2WXYM77Au8XB7sN1HwOhYhzuWq4xigwDKN3Mk8tx16xrdUG2rDhf2mrirGA0pAyv0RCm54vikG/ezVcg==}
     engines: {bun: '>=1.2', deno: '>=2.0', node: '>=22'}
     cpu: [x64]
     os: [win32]
 
-  '@corsa-bind/napi@1.13.1':
-    resolution: {integrity: sha512-0bc6lz8545ivokeimaXBcYL6yQ/rGc7aEWwLPrFXbyzj7VEUqw/wmakM/VZrL28/HOwvXrZrvp1qr66JDit1Cg==}
+  '@corsa-bind/napi@1.14.0':
+    resolution: {integrity: sha512-K8LFNN7CC/UXTCOYBTa2N/DZp7Ogn3h5yZ30OznF4FWiq3ZlpHzXxx7zi4zkl6QMKLXV2hIRw/W57TJ8RfHmOQ==}
     engines: {bun: '>=1.2', deno: '>=2.0', node: '>=22'}
 
   '@docsearch/css@4.7.0':
@@ -2054,8 +2054,8 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  corsa-oxlint@1.13.1:
-    resolution: {integrity: sha512-B41OA1XAx3XWf9ITFD6hVKb4ik1CZxy2aKj349jGNwx7MOsBAubnynKKoSObEEUaW9FuiT33U3TCcEFhb4z/eg==}
+  corsa-oxlint@1.14.0:
+    resolution: {integrity: sha512-g6IPEBmOqrlUhXorBI55ZsXi4OfFMnTiyAUkS2iGkpIg/3S1pa8hV+Z832W/Ud4gLSYFokJa4nL/IxMtMNAJJQ==}
     engines: {bun: '>=1.2', deno: '>=2.0', node: '>=22'}
     peerDependencies:
       '@oxlint/plugins': ^1.69.0
@@ -3064,40 +3064,40 @@ snapshots:
 
   '@blazediff/core@1.9.1': {}
 
-  '@corsa-bind/napi-darwin-arm64@1.13.1':
+  '@corsa-bind/napi-darwin-arm64@1.14.0':
     optional: true
 
-  '@corsa-bind/napi-darwin-x64@1.13.1':
+  '@corsa-bind/napi-darwin-x64@1.14.0':
     optional: true
 
-  '@corsa-bind/napi-linux-arm64-gnu@1.13.1':
+  '@corsa-bind/napi-linux-arm64-gnu@1.14.0':
     optional: true
 
-  '@corsa-bind/napi-linux-arm64-musl@1.13.1':
+  '@corsa-bind/napi-linux-arm64-musl@1.14.0':
     optional: true
 
-  '@corsa-bind/napi-linux-x64-gnu@1.13.1':
+  '@corsa-bind/napi-linux-x64-gnu@1.14.0':
     optional: true
 
-  '@corsa-bind/napi-linux-x64-musl@1.13.1':
+  '@corsa-bind/napi-linux-x64-musl@1.14.0':
     optional: true
 
-  '@corsa-bind/napi-win32-arm64-msvc@1.13.1':
+  '@corsa-bind/napi-win32-arm64-msvc@1.14.0':
     optional: true
 
-  '@corsa-bind/napi-win32-x64-msvc@1.13.1':
+  '@corsa-bind/napi-win32-x64-msvc@1.14.0':
     optional: true
 
-  '@corsa-bind/napi@1.13.1':
+  '@corsa-bind/napi@1.14.0':
     optionalDependencies:
-      '@corsa-bind/napi-darwin-arm64': 1.13.1
-      '@corsa-bind/napi-darwin-x64': 1.13.1
-      '@corsa-bind/napi-linux-arm64-gnu': 1.13.1
-      '@corsa-bind/napi-linux-arm64-musl': 1.13.1
-      '@corsa-bind/napi-linux-x64-gnu': 1.13.1
-      '@corsa-bind/napi-linux-x64-musl': 1.13.1
-      '@corsa-bind/napi-win32-arm64-msvc': 1.13.1
-      '@corsa-bind/napi-win32-x64-msvc': 1.13.1
+      '@corsa-bind/napi-darwin-arm64': 1.14.0
+      '@corsa-bind/napi-darwin-x64': 1.14.0
+      '@corsa-bind/napi-linux-arm64-gnu': 1.14.0
+      '@corsa-bind/napi-linux-arm64-musl': 1.14.0
+      '@corsa-bind/napi-linux-x64-gnu': 1.14.0
+      '@corsa-bind/napi-linux-x64-musl': 1.14.0
+      '@corsa-bind/napi-win32-arm64-msvc': 1.14.0
+      '@corsa-bind/napi-win32-x64-msvc': 1.14.0
 
   '@docsearch/css@4.7.0': {}
 
@@ -3862,19 +3862,19 @@ snapshots:
       vite: '@voidzero-dev/vite-plus-core@0.2.9(@types/node@24.10.15)(jiti@2.6.1)(typescript@7.0.2)(yaml@2.8.1)'
       vue: 3.5.41(typescript@7.0.2)
 
-  '@vitest/browser-preview@4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10)':
+  '@vitest/browser-preview@4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1)))':
     dependencies:
       '@testing-library/dom': 10.4.1
       '@testing-library/user-event': 14.6.6(@testing-library/dom@10.4.1)
-      '@vitest/browser': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10)
-      vitest: 4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
+      '@vitest/browser': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1)))
+      vitest: 4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10))(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
     transitivePeerDependencies:
       - bufferutil
       - msw
       - utf-8-validate
       - vite
 
-  '@vitest/browser@4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10)':
+  '@vitest/browser@4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1)))':
     dependencies:
       '@blazediff/core': 1.9.1
       '@vitest/mocker': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
@@ -3883,7 +3883,7 @@ snapshots:
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.1.1
-      vitest: 4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
+      vitest: 4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10))(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
       ws: 8.21.3
     transitivePeerDependencies:
       - bufferutil
@@ -4320,9 +4320,9 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  corsa-oxlint@1.13.1(@oxlint/plugins@1.81.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2001)(vite-plus@0.3.0(@types/node@24.10.15)(jiti@2.6.1)(typescript@7.0.2)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(yaml@2.8.1))):
+  corsa-oxlint@1.14.0(@oxlint/plugins@1.81.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2001)(vite-plus@0.3.0(@types/node@24.10.15)(jiti@2.6.1)(typescript@7.0.2)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(yaml@2.8.1))):
     dependencies:
-      '@corsa-bind/napi': 1.13.1
+      '@corsa-bind/napi': 1.14.0
       '@oxlint/plugins': 1.81.0
       oxlint: 1.81.0(oxlint-tsgolint@7.0.2001)(vite-plus@0.3.0(@types/node@24.10.15)(jiti@2.6.1)(typescript@7.0.2)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(yaml@2.8.1))
 
@@ -5401,8 +5401,8 @@ snapshots:
     dependencies:
       '@oxc-project/types': 0.146.0
       '@oxlint/plugins': 1.79.0
-      '@vitest/browser': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10)
-      '@vitest/browser-preview': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10)
+      '@vitest/browser': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1)))
+      '@vitest/browser-preview': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1)))
       '@vitest/expect': 4.1.11
       '@vitest/mocker': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
       '@vitest/pretty-format': 4.1.11
@@ -5414,7 +5414,7 @@ snapshots:
       oxfmt: 0.64.0(vite-plus@0.3.0(@types/node@24.10.15)(jiti@2.6.1)(typescript@6.0.3)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(yaml@2.8.1))
       oxlint: 1.79.0(oxlint-tsgolint@7.0.2001)(vite-plus@0.3.0(@types/node@24.10.15)(jiti@2.6.1)(typescript@6.0.3)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(yaml@2.8.1))
       oxlint-tsgolint: 7.0.2001
-      vitest: 4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
+      vitest: 4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10))(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
     optionalDependencies:
       '@voidzero-dev/vite-plus-darwin-arm64': 0.3.0
       '@voidzero-dev/vite-plus-darwin-x64': 0.3.0
@@ -5459,8 +5459,8 @@ snapshots:
     dependencies:
       '@oxc-project/types': 0.146.0
       '@oxlint/plugins': 1.79.0
-      '@vitest/browser': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10)
-      '@vitest/browser-preview': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10)
+      '@vitest/browser': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1)))
+      '@vitest/browser-preview': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1)))
       '@vitest/expect': 4.1.11
       '@vitest/mocker': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
       '@vitest/pretty-format': 4.1.11
@@ -5472,7 +5472,7 @@ snapshots:
       oxfmt: 0.64.0(vite-plus@0.3.0(@types/node@24.10.15)(jiti@2.6.1)(typescript@7.0.2)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(yaml@2.8.1))
       oxlint: 1.79.0(oxlint-tsgolint@7.0.2001)(vite-plus@0.3.0(@types/node@24.10.15)(jiti@2.6.1)(typescript@7.0.2)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(yaml@2.8.1))
       oxlint-tsgolint: 7.0.2001
-      vitest: 4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
+      vitest: 4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10))(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
     optionalDependencies:
       '@voidzero-dev/vite-plus-darwin-arm64': 0.3.0
       '@voidzero-dev/vite-plus-darwin-x64': 0.3.0
@@ -5600,7 +5600,7 @@ snapshots:
       - unrun
       - yaml
 
-  vitest@4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1)):
+  vitest@4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10))(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1)):
     dependencies:
       '@vitest/expect': 4.1.10
       '@vitest/mocker': 4.1.10(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))
@@ -5624,7 +5624,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 24.10.15
-      '@vitest/browser-preview': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10)
+      '@vitest/browser-preview': 4.1.11(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1))(vitest@4.1.10(@types/node@24.10.15)(@vitest/browser-preview@4.1.11)(vite@7.1.12(@types/node@24.10.15)(jiti@2.6.1)(lightningcss@1.33.0)(yaml@2.8.1)))
     transitivePeerDependencies:
       - msw
 

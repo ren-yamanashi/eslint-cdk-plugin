@@ -1,4 +1,4 @@
-import type { ParserServices, RuleContext } from "corsa-oxlint";
+import type { CorsaTypeCheckerShape, ParserServices, RuleContext } from "corsa-oxlint";
 
 import { ESLintUtils } from "corsa-oxlint";
 
@@ -8,6 +8,7 @@ import {
 } from "../core/ast-node/finder/public-property";
 import { isConstructOrStackType } from "../core/cdk-construct/type-checker/is-construct-or-stack";
 import { findTypeOfCdkConstruct } from "../core/cdk-construct/type-finder";
+import { findTypeAtLocation } from "../core/ts-type/finder/type-at-location";
 import { createRule } from "../shared/create-rule";
 
 /**
@@ -33,11 +34,11 @@ export const noConstructInPublicPropertyOfConstruct = createRule({
     const checker = parserServices.program.getTypeChecker();
     return {
       ClassDeclaration(node) {
-        const type = parserServices.getTypeAtLocation(node);
+        const type = findTypeAtLocation(node, parserServices);
         if (!isConstructOrStackType(type, checker)) return;
         const publicProperties = findPublicPropertiesInClass(node);
         for (const publicProperty of publicProperties) {
-          validatePublicProperty(publicProperty, context, parserServices);
+          validatePublicProperty(publicProperty, context, parserServices, checker);
         }
       },
     };
@@ -48,6 +49,7 @@ const validatePublicProperty = (
   publicProperty: PublicProperty,
   context: RuleContext,
   parserServices: ParserServices,
+  checker: CorsaTypeCheckerShape,
 ) => {
   // Only inspect properties that have an explicit type annotation.
   // Inferring the type from an initializer is out of scope for this rule.
@@ -56,8 +58,7 @@ const validatePublicProperty = (
   // NOTE: The declared type is read from the declaration's identifier rather than from the
   // property node, because the identifier resolves consistently for every declaration form
   // (`!`, `?`, initializer) in both type checkers.
-  const type = parserServices.getTypeAtLocation(publicProperty.node.key);
-  const checker = parserServices.program.getTypeChecker();
+  const type = findTypeAtLocation(publicProperty.node.key, parserServices);
   const constructType = findTypeOfCdkConstruct(type, checker);
   if (constructType) {
     const typeName = checker.getSymbolOfType(constructType)?.name ?? "";

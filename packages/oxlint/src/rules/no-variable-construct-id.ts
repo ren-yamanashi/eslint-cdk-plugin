@@ -6,6 +6,7 @@ import { findEnclosingClass } from "../core/ast-node/finder/enclosing-class";
 import { isConstructTypeIgnoringSubclasses } from "../core/cdk-construct/type-checker/is-construct";
 import { isConstructOrStackType } from "../core/cdk-construct/type-checker/is-construct-or-stack";
 import { findConstructorPropertyNames } from "../core/ts-type/finder/constructor-property-name";
+import { findTypeAtLocation } from "../core/ts-type/finder/type-at-location";
 import { createRule } from "../shared/create-rule";
 
 /**
@@ -30,18 +31,19 @@ export const noVariableConstructId = createRule({
     const checker = parserServices.program.getTypeChecker();
     return {
       NewExpression(node) {
-        const type = parserServices.getTypeAtLocation(node);
+        if (node.arguments.length < 2) return;
 
-        if (!isConstructTypeIgnoringSubclasses(type, checker) || node.arguments.length < 2) return;
+        const type = findTypeAtLocation(node, parserServices);
+        if (!isConstructTypeIgnoringSubclasses(type, checker)) return;
 
         // NOTE: Skip when inside a class that is not Construct/Stack
         const enclosingClass = findEnclosingClass(node);
         const enclosingClassType = enclosingClass
-          ? parserServices.getTypeAtLocation(enclosingClass)
+          ? findTypeAtLocation(enclosingClass, parserServices)
           : undefined;
         if (enclosingClassType && !isConstructOrStackType(enclosingClassType, checker)) return;
 
-        const calleeType = parserServices.getTypeAtLocation(node.callee);
+        const calleeType = findTypeAtLocation(node.callee, parserServices);
         const constructorPropertyNames = findConstructorPropertyNames(calleeType, checker);
         if (constructorPropertyNames[1] !== "id") return;
 

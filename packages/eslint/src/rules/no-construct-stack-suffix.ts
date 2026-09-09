@@ -64,10 +64,10 @@ export const noConstructStackSuffix = createRule({
 
     return {
       NewExpression(node) {
+        if (node.arguments.length < 2) return;
+
         const type = parserServices.getTypeAtLocation(node);
-        if (!isConstructOrStackType(type) || node.arguments.length < 2) {
-          return;
-        }
+        if (!isConstructOrStackType(type)) return;
 
         const calleeType = parserServices.getTypeAtLocation(node.callee);
         const constructorPropertyNames = findConstructorPropertyNames(calleeType, checker);

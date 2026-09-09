@@ -162,22 +162,6 @@ ruleTester.run("prefer-grants-property", preferGrantsProperty, {
       registry["x"].grantPublish();
       `,
     },
-    // NOTE: corsa-oxlint 1.13.1 resolves an array element to the array type, so this receiver is
-    // skipped. A runtime that resolves it correctly reports it, as the ESLint plugin already does.
-    {
-      code: `
-      class Construct {}
-      class TopicGrants {
-        publish() {}
-      }
-      class Topic extends Construct {
-        grants: TopicGrants = new TopicGrants();
-        grantPublish() {}
-      }
-      declare const topics: Topic[];
-      topics[0].grantPublish();
-      `,
-    },
     // NOTE: the member and the object resolve to the same type here, so the receiver is skipped.
     // The ESLint plugin reports this case.
     {
@@ -393,6 +377,22 @@ ruleTester.run("prefer-grants-property", preferGrantsProperty, {
       }
       const maybe = (): Topic | undefined => new Topic();
       maybe()?.grantPublish();
+      `,
+      errors: [{ messageId: "useGrantsProperty" }],
+    },
+    // WHEN: the receiver is an array element
+    {
+      code: `
+      class Construct {}
+      class TopicGrants {
+        publish() {}
+      }
+      class Topic extends Construct {
+        grants: TopicGrants = new TopicGrants();
+        grantPublish() {}
+      }
+      declare const topics: Topic[];
+      topics[0].grantPublish();
       `,
       errors: [{ messageId: "useGrantsProperty" }],
     },

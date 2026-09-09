@@ -48,7 +48,7 @@
     "test": "vp test --run"
   },
   "dependencies": {
-    "corsa-oxlint": "1.13.1",
+    "corsa-oxlint": "1.14.0",
     "oxlint-tsgolint": "^7.0.2001",
     "typescript": "^7.0.2"
   },

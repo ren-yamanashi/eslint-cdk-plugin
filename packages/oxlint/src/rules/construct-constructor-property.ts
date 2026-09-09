@@ -1,4 +1,4 @@
-import type { ESTree, ParserServices, RuleContext } from "corsa-oxlint";
+import type { CorsaTypeCheckerShape, ESTree, ParserServices, RuleContext } from "corsa-oxlint";
 
 import { AST_NODE_TYPES, ESLintUtils } from "corsa-oxlint";
 
@@ -6,6 +6,7 @@ import { findConstructor } from "../core/ast-node/finder/constructor";
 import { findConstructorParamIdentifier } from "../core/ast-node/finder/constructor-param-identifier";
 import { isAppType } from "../core/cdk-construct/type-checker/is-app";
 import { isConstructType } from "../core/cdk-construct/type-checker/is-construct";
+import { findTypeAtLocation } from "../core/ts-type/finder/type-at-location";
 import { createRule } from "../shared/create-rule";
 
 type ConstructorParam =
@@ -46,7 +47,7 @@ export const constructConstructorProperty = createRule({
     const checker = parserServices.program.getTypeChecker();
     return {
       ClassDeclaration(node) {
-        const type = parserServices.getTypeAtLocation(node);
+        const type = findTypeAtLocation(node, parserServices);
         // NOTE: App and its subclasses take `(props)` instead of `(scope, id)`,
         // so they can never satisfy this rule
         if (!isConstructType(type, checker) || isAppType(type, checker)) return;
@@ -56,7 +57,7 @@ export const constructConstructorProperty = createRule({
 
         const params = checkNumOfConstructorProperty(constructor, context);
         if (params) {
-          checkFirstParamIsScope(params[0], context, parserServices);
+          checkFirstParamIsScope(params[0], context, parserServices, checker);
           checkSecondParamIsId(params[1], context);
           checkThirdParamIsProps(params[2], context);
         }
@@ -91,6 +92,7 @@ const checkFirstParamIsScope = (
   firstParam: ConstructorProperties[0],
   context: RuleContext,
   parserServices: ParserServices,
+  checker: CorsaTypeCheckerShape,
 ) => {
   const binding = findConstructorParamIdentifier(firstParam);
   if (!binding || binding.name !== "scope") {
@@ -98,13 +100,7 @@ const checkFirstParamIsScope = (
       node: firstParam,
       messageId: "invalidConstructorProperty",
     });
-  } else if (
-    !isConstructType(
-      parserServices.getTypeAtLocation(binding),
-      parserServices.program.getTypeChecker(),
-      [],
-    )
-  ) {
+  } else if (!isConstructType(findTypeAtLocation(binding, parserServices), checker, [])) {
     context.report({
       node: firstParam,
       messageId: "invalidConstructorType",
