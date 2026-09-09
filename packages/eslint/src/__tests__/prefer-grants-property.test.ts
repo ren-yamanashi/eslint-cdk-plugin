@@ -412,8 +412,6 @@ ruleTester.run("prefer-grants-property", preferGrantsProperty, {
       errors: [{ messageId: "useGrantsProperty" }],
     },
     // WHEN: the receiver is an array element
-    // NOTE: the Oxlint plugin skips this receiver on corsa-oxlint 1.13.1, which resolves an array
-    // element to the array type
     {
       code: `
       class Construct {}
